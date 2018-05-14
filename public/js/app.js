@@ -1,7 +1,7 @@
 (function(win){
   var app = angular.module('app', ['ngApi'])
   .run(['$ae', function($ae){
-    $ae.init({mode:'DEV',appkey:'123123',masterKey:'123123', endpoint: 'http://api.yunplus.io/api'});
+    $ae.init({mode:'DEV',appkey:'123123',masterKey:'123123', endpoint: '/api'});
   }])
   win.app = app;
 })(window);

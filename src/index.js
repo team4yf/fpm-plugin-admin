@@ -12,9 +12,9 @@ export default {
   bind: (fpm) => {
     // Run When Server Init
     fpm.registerAction('INIT', () => {
-      console.log(fpm.getVersion())
+      fpm.logger.info(fpm.getVersion())
       const c = fpm.getConfig()
-      console.log('Run Init Actions: local path: ', LOCAL)
+      fpm.logger.info('Run Init Actions: local path: ', LOCAL)
     })
 
     fpm.registerAction('ADMIN', () => {

@@ -24,6 +24,12 @@ export default (admin) => {
             version: ctx.fpm.getVersion(),
         })
     })
+    admin.get('/admin/plugin', async (ctx, next) => {
+        await ctx.render('admin/plugin.html', {
+            version: ctx.fpm.getVersion(),
+            plugins: ctx.fpm.getPlugins(),
+        })
+    })
     admin.get('/admin/logout', async (ctx, next) => {
         ctx.session.admin = undefined
         await ctx.redirect('/admin/login')
