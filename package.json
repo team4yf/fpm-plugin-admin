@@ -1,0 +1,35 @@
+{
+  "name": "fpm-plugin-admin",
+  "version": "0.0.1",
+  "description": "A Fpm's Plugin For Admin Interface",
+  "main": "lib/index.js",
+  "scripts": {
+    "compile": "./node_modules/.bin/babel -d lib/ src/",
+    "prepublish": "npm run compile",
+    "dev": "./node_modules/.bin/nodemon dev/dev.babel.js",
+    "test": "./node_modules/.bin/mocha test/*.test.js"
+  },
+  "author": "yfsoftcom",
+  "license": "ISC",
+  "dependencies": {
+    "koa-session2": "^2.2.6",
+    "koa-static": "^4.0.2",
+    "koa-views": "^6.1.4",
+    "lodash": "^4.17.4",
+    "nunjucks": "^3.1.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-core": "^6.14.0",
+    "babel-plugin-transform-runtime": "^6.0.0",
+    "babel-polyfill": "^6.13.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.14.0",
+    "babel-runtime": "^6.0.0",
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0",
+    "yf-fpm-client-nodejs": "^1.0.11",
+    "yf-fpm-server": "^2.2.28"
+  }
+}
