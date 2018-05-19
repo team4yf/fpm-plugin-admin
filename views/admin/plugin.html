@@ -1,0 +1,35 @@
+{% extends "views/admin/base-content.html" %}
+{% block pagetitle %} 插件列表 {% endblock %}
+{% block main %}
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>插件名</th>
+        <th>版本</th>
+        <th class="align-right">描述</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for _, plugin in plugins %}
+      <tr>
+        <td>
+          <p><strong>{{ plugin.name }}</strong></p>
+        </td>
+        <td>
+          <p>{{ plugin.version }}</p>
+        </td>
+        <td>
+          <p class="align-right">{{ plugin.description if plugin.description else '暂无描述' }}</p>
+        </td>
+        <td class="align-right">
+          <button class="button-primary-outlined">Remove</button>
+        </td>
+      </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+</div>
+{% endblock %}

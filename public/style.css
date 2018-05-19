@@ -10,9 +10,9 @@ th{
 .container{
   width: 96%;
 }
-header, main{
+/* header, main{
   padding-left: 300px;
-}
+} */
 .side-nav.fixed{
     transform: translateX(0%);
   }

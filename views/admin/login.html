@@ -1,0 +1,77 @@
+{% extends "views/admin/base.html" %}
+{% block title %} Fpm Admin Login {% endblock %}
+{% block head %}
+<style>
+
+</style>
+{% endblock %}
+{% block bodyclass %} light-blue lighten-4 {% endblock %}
+{% block body %}
+<!-- Navigation -->
+<nav>
+  <div class="nav-container">
+      <div class="nav-logo">
+          <span>FPM-ADMIN@{{version}}</span>
+      </div>
+  </div>
+</nav>
+<main>
+<div class="container">
+  <div class="row">
+      <div class="col col-sm-6 col-sm-offset-3">
+        <div class="panel">
+          <div class="panel-head">
+            <p class="panel-title align-center">登录</p>
+          </div>
+          <div class="panel-body">
+              <div class="form-control">
+                  <label>账户</label>
+                  <input type="text" id="login-name" value="admin" />
+              </div>
+              <div class="form-control">
+                  <label>密码</label>
+                  <input type="password" id="login-pass" value="741235896" />
+              </div>
+          </div>
+          <div class="panel-footer">
+              <button class="button-primary" id="btn-login">确 认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
+{% block script %}
+<script>
+  function getById(id){
+    return document.getElementById(id);
+  }
+  
+  var $name = getById('login-name');
+  var $pass = getById('login-pass');
+
+  var $btn = getById('btn-login');
+  $btn.onclick = function(e){
+    axios.post('/admin/login',{
+      name: $name.value,
+      pass: $pass.value,
+    })
+    .then(function(rsp){
+      return rsp.data
+    })
+    .then(function(data){
+      if(data.code === 0){
+        location.href = '/admin/main'
+      }else{
+        alert(data.error)
+      }
+    })
+    .catch(function(err){
+      alert('系统错误');
+      console.error(err);
+    });
+  }
+
+</script>
+{% endblock %}

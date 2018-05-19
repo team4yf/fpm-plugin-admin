@@ -13,6 +13,7 @@ export default async (ctx, next) => {
     if (!admin) {
       ctx.redirect('/admin/login')
     } else {
+      ctx.currentlink = url
       await next()
     }
   }else{

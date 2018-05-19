@@ -12,6 +12,7 @@
   "author": "yfsoftcom",
   "license": "ISC",
   "dependencies": {
+    "dayjs": "^1.6.2",
     "fpm-plugin-logger": "^0.0.1",
     "koa-session2": "^2.2.6",
     "koa-static": "^4.0.2",
@@ -31,6 +32,6 @@
     "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
     "yf-fpm-client-nodejs": "^1.0.11",
-    "yf-fpm-server": "^2.2.28"
+    "yf-fpm-server": "^2.3.0"
   }
 }

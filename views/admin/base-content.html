@@ -1,0 +1,91 @@
+{% extends "views/admin/base.html" %}
+{% block head %} 
+<!-- <link type="text/css" rel="stylesheet" href="/style.css"  media="screen,projection"/> -->
+{% endblock %}
+{% block style %} 
+{% endblock %}
+{% block body %}
+<!-- Navigation -->
+<nav>
+    <div class="nav-container">
+        <div class="nav-logo">
+            <span>FPM-Admin@{{version}}</span>
+        </div>
+    </div>
+  </nav>
+  <main>
+    <div class="container">
+      <div class="row row-reverse">
+        <div class="col col-lg-9">
+          <section>
+            <p class="h5">{% block pagetitle %}{% endblock %}</p>
+            {% block main %}{% endblock %}
+          </section>
+        </div>
+        <div class="col col-lg-3">
+          <div class="sidebar sidebar-left">
+            <h3 class="sidebar-category">工作台</h3>
+            <ul class="sidebar-links">
+              <li><a {{ 'class=active' if ("/admin/main" == currentlink) }} href="/admin/main">仪表板</a></li>
+            </ul>
+            <h3 class="sidebar-category">插件</h3>
+            <ul class="sidebar-links">
+              <li><a {{ 'class=active' if ("/admin/plugin" == currentlink) }} href="/admin/plugin">插件列表</a></li>
+            </ul>
+            <h3 class="sidebar-category">系统菜单</h3>
+            <ul class="sidebar-links">
+              <li><a {{ 'class=active' if ("/admin/about" == currentlink) }} href="/admin/about">关于</a></li>
+              <li><a href="/admin/logout">注销</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col col-lg-5">
+        <div class="footer-text">
+          <p class="h5">yf-fpm-server</p>
+          <p>专注于解决中小型团队开发产品的简约模型.</p>
+        </div>
+      </div>
+      <div class="col col-sm-6 col-lg-2 col-lg-offset-1">
+        <h4 class="footer-links-category">SDK</h4>
+        <ul class="footer-links">
+          <li><a href="https://github.com/yfsoftcom/yf-fp-client-java" target="_blank">Android</a></li>
+          <li><a href="https://github.com/yfsoftcom/ngapi" target="_blank">Angularjs 1.x</a></li>
+          <li><a href="https://github.com/yfsoftcom/yf-fpm-client-nodejs" target="_blank">Nodejs Client</a></li>
+        </ul>
+      </div>
+
+      <div class="col col-sm-6 col-lg-2">
+          <h4 class="footer-links-category">Plugins</h4>
+          <ul class="footer-links">
+            <li><a href="https://github.com/team4yf/fpm-plugin-mysql" target="_blank">fpm-plugin-mysql</a></li>
+            <li><a href="https://github.com/team4yf/fpm-plugin-logger" target="_blank">fpm-plugin-logger</a></li>
+            <li><a href="https://github.com/team4yf/fpm-plugin-schedule" target="_blank">fpm-plugin-schedule</a></li>
+            <li><a href="https://github.com/team4yf/fpm-plugin-socketio" target="_blank">fpm-plugin-socketio</a></li>
+          </ul>
+        </div>
+
+      <div class="col col-sm-6 col-lg-2">
+        <h4 class="footer-links-category">ABOUTUS</h4>
+        <ul class="footer-links">
+          <li><a href="https://github.com/team4yf/yf-fpm-server" target="_blank">yf-fpm-server</a></li>
+          <li><a href="http://blog.yunplus.io" target="_blank">Blog</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <p class="copyright align-right">Made with 🌭 by Wang Fan. Powered By Yunplus.IO .</p>  
+</footer>
+{% endblock %}
+
+{% block js %}
+<script>
+  // $(".button-collapse").sideNav();
+</script>
+{% endblock %}
