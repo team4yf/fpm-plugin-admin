@@ -24,19 +24,24 @@
             <p class="panel-title align-center">登录</p>
           </div>
           <div class="panel-body">
-              <div class="form-control">
-                  <label>账户</label>
-                  <input type="text" id="login-name" value="admin" />
-              </div>
-              <div class="form-control">
-                  <label>密码</label>
-                  <input type="password" id="login-pass" value="741235896" />
-              </div>
+            <div class="form-control">
+                <label>账户</label>
+                <input type="text" id="login-name" value="admin" />
+            </div>
+            <div class="form-control">
+                <label>密码</label>
+                <input type="password" id="login-pass" value="741235896" />
+            </div>
           </div>
           <div class="panel-footer">
-              <button class="button-primary" id="btn-login">确 认</button>
+            <button class="button-primary" id="btn-login">确 认</button>
           </div>
         </div>
+      </div>
+      <div class="col col-sm-3">
+        <section>
+          <div class="alert alert-danger " style="display: none" id="alert-error"></div>
+        </section>
       </div>
     </div>
   </div>
@@ -44,34 +49,33 @@
 {% endblock %}
 {% block script %}
 <script>
-  function getById(id){
-    return document.getElementById(id);
-  }
-  
-  var $name = getById('login-name');
-  var $pass = getById('login-pass');
-
-  var $btn = getById('btn-login');
-  $btn.onclick = function(e){
-    axios.post('/admin/login',{
-      name: $name.value,
-      pass: $pass.value,
-    })
-    .then(function(rsp){
-      return rsp.data
+  var $name = $('login-name'),
+      $pass = $('login-pass'),
+      $alertError = $('alert-error'),
+      $btn = $('btn-login'),
+      funcHideError = function(e){
+        $alertError.hide()
+      };
+  $name.on('focus', funcHideError);
+  $pass.on('focus', funcHideError);
+  $btn.on('click', function(e){
+    $.post('/admin/login',{
+      name: $name.val(),
+      pass: $pass.val(),
     })
     .then(function(data){
       if(data.code === 0){
         location.href = '/admin/main'
       }else{
-        alert(data.error)
+        
+        $alertError.html(data.error).show();
       }
     })
     .catch(function(err){
       alert('系统错误');
       console.error(err);
     });
-  }
+  });
 
 </script>
 {% endblock %}

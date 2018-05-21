@@ -9,11 +9,15 @@ export default async (ctx, next) => {
       return
     }
     let admin = ctx.session.admin
+    
     //TODO RBAC
     if (!admin) {
       ctx.redirect('/admin/login')
     } else {
-      ctx.currentlink = url
+      // ignore post ajax
+      if('GET' === ctx.method){
+        ctx.currentlink = url
+      }
       await next()
     }
   }else{

@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import os from 'os'
 import dayjs from 'dayjs'
+import fpmc from 'yf-fpm-client-nodejs'
 
 const SERVER_STATUS = {
     arch: os.arch(),
@@ -39,6 +40,34 @@ export default (admin) => {
             currentlink: ctx.currentlink,
         })
     })
+
+    admin.get('/admin/test', async (ctx, next) => {
+        await ctx.render('admin/test.html', {
+            env: ctx.fpm._env,
+            version: ctx.fpm.getVersion(),
+            currentlink: ctx.currentlink,
+        })
+    })
+
+    admin.get('/admin/config', async (ctx, next) => {
+        await ctx.render('admin/config.html', {
+            config: JSON.stringify(ctx.fpm.getConfig(), null, 2),
+            version: ctx.fpm.getVersion(),
+            currentlink: ctx.currentlink,
+        })
+    })
+
+    admin.post('/admin/rpc', async (ctx, next) => {
+        // get body
+        const { method, args } = ctx.request.body
+        try{
+            const data = await new fpmc.Func(method).invoke(args)
+            ctx.body = { errno: 0, data }
+        }catch(e){
+            ctx.body = e
+        }
+    })
+
     admin.get('/admin/setting/:menu', async (ctx, next) => {
         await ctx.render('admin/setting/' + ctx.params.menu + '.html', {})
     })
@@ -63,12 +92,16 @@ export default (admin) => {
     admin.post('/admin/login', async (ctx, next) => {
         //check pass
         let loginInfo = ctx.request.body
-        if (loginInfo.name === 'admin' && loginInfo.pass === '741235896') {
+        const { user, pass, error} = _.assign({user: 'admin', pass: '741235896'}, ctx.fpm.getConfig('admin'))
+        if (loginInfo.name === user && loginInfo.pass === pass) {
+            // init fpmc
+            const { port, domain } = ctx.fpm.getConfig('server')
+            fpmc.init({ appkey: '123123', masterkey: '123123', endpoint: `http://${ domain || 'localhost'}:${port}/api`})
+            // fpmc.ping().then(console.info).catch(console.error)
             ctx.session.admin = loginInfo
             ctx.body = { code: 0 }
-            // TODO: check premission
         } else {
-            ctx.body = { code: -99, error: 'User Or Pass Error ' }
+            ctx.body = { code: -99, error: error || '用户名或密码错误' }
         }
     })
 

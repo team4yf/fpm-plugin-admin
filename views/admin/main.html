@@ -1,70 +1,16 @@
 {% extends "views/admin/base-content.html" %}
 {% block pagetitle %} 仪表板 {% endblock %}
 {% block main %}
-<div ng-controller="MainCtrl">
+<div>
   <p class="alert alert-success">运行时间: {{ status.startTime }} <span class="float-right">已处理请求: {{ status.counter }}</span></p>
   <div class="clear-fix"></div>
   <p class="alert alert-info">PLATFORM: {{ status.platform }} | CPU: {{ status.cpus }} | MEM: {{ status.freemem }} /{{status.totalmem }} G</p>
-    <!-- Targets */ -->
-  <div class="panel">
-    <div class="panel-head">
-        <div class="panel-title">接口测试</div>
-    </div>
-    <div class="panel-body">
-        <div class="form-control">
-          <label>接口名</label>
-          <input type="text" placeholder="Enter some info" />
-      </div>
-      <div class="form-control">
-          <label>参数</label>
-          <textarea placeholder="Enter some text..."></textarea>
-      </div>
-
-      <button class="button-primary">Default</button>
-    </div>
-  </div>
-      
-        <!-- API TESTER /* -->
-        <!-- /* OUTPUT -->
-        <!-- <div class="col s12 m6 container">
-          <div class="card gray light-1">
-            <div class="card-content">
-              <span class="card-title">输出结果</span>
-              <pre ng-bind="api.result"></pre>
-            </div>
-          </div>
-        </div>
-      </div> -->
-      <!-- */ -->
-
-      <!-- /* Commander -->
-      <!-- <div class="row">
-        <div class="col s12 m12 container">
-          <div class="card gray light-1">
-            <div class="card-content">
-              <span class="card-title">终端控制台</span>
-              <div class="input-field">
-                <textarea class="materialize-textarea" ng-model="command.command"></textarea>
-                <label>命令: yfci build , pm2 show, free</label>
-              </div>
-              <button 
-                ng-click="doCommand($event)"
-                class="btn waves-effect waves-light light-blue darken-3">执行</button>
-            </div>
-            <div class="card-content">
-              <span class="card-title">输出结果</span>
-              <pre ng-bind="command.result"></pre>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-  </div>
+</div>
 {% endblock %}
 
 {% block js %}
 <script>
-  
+
 </script>
 {% endblock %}
 

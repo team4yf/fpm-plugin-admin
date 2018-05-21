@@ -1,0 +1,58 @@
+{% extends "views/admin/base-content.html" %}
+{% block pagetitle %} 接口测试 {% endblock %}
+{% block main %}
+<div>
+  <p class="alert alert-danger">系统检测到当前处在: <strong>[{{ env }}]</strong> 环境 <br/>
+    测试内容会在当前系统环境中实时生效,请不要在 <strong>[PRODUCT]</strong> 环境中使用该功能!</p>
+  <div class="panel">
+    <div class="panel-head">
+        <div class="panel-title"><p class="h6">输入测试数据</p></div>
+    </div>
+    <div class="panel-body">
+      <div class="form-control">
+          <label>接口名</label>
+          <input type="text" id="txt-api-name" placeholder="请输入函数名" value="test.foo"/>
+      </div>
+      <div class="form-control">
+          <label>参数</label>
+          <textarea class="align-left" id="txt-api-args" rows="2" placeholder="请输入函数参数,必须是JSON格式">{}</textarea>
+      </div>
+
+      <button class="button-primary" id="btn-test">测试</button>
+      <button class="button-warning" id="btn-reset">重置</button>
+      <hr/>
+      <pre class="language-javascript">
+          <code class="language-javascript" id="text-result"></code>
+      </pre>
+    </div>
+  </div>
+      
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+  var $btnTest = $('btn-test'),
+      $btnReset = $('btn-reset'),
+      $txtApiName = $('txt-api-name'),
+      $txtApiArgs = $('txt-api-args'),
+      $txtResult = $('text-result');
+
+  $btnReset.on('click', function(){
+    $txtApiName.val('');
+    $txtApiArgs.val('{}');
+    $txtResult.html('');
+  });
+  $btnTest.on('click', function(){
+    $.post('/admin/rpc', { method: $txtApiName.val(), args: $txtApiArgs.val() })
+      .then( data => {
+        $txtResult.html(JSON.stringify(data, null, 2));
+      })
+      .catch( err => {
+        console.error(err)
+      })
+  });
+
+</script>
+{% endblock %}
+

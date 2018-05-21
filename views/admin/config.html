@@ -1,0 +1,10 @@
+{% extends "views/admin/base-content.html" %}
+{% block pagetitle %} 系统配置 {% endblock %}
+{% block main %}
+<div>
+  <pre class="language-javascript">
+      <code class="language-javascript">{{ config }}</code>
+  </pre>
+  
+</div>
+{% endblock %}

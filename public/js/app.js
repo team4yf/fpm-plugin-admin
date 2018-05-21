@@ -1,88 +1,41 @@
-(function(win){
-  var app = angular.module('app', ['ngApi'])
-  .run(['$ae', function($ae){
-    $ae.init({mode:'DEV',appkey:'123123',masterKey:'123123', endpoint: '/api'});
-  }])
-  win.app = app;
-})(window);
-
-/**
- * Main
- */
-(function(app){
-  app.controller('MainCtrl', ['$scope', '$ae', function($scope, $ae){
-    $scope.api = {
-      method: '',
-      args: '{}',
-      result: 'TODO...',
-    };
-    $scope.command = {
-      command: '',
-      result: '',
+var $ = window.$ = (function(ctx){
+  function _miniJq(domId){
+    if(domId !== undefined)
+      this._dom = document.getElementById(domId);
+  }
+  var miniJq = function(domId){
+    return new _miniJq(domId);
+  }
+  miniJq.post = function(url, data){
+    return axios.post(url, data)
+            .then(function(rsp){
+              return rsp.data;
+            });
+  };
+  _miniJq.prototype = {
+    val: function(v){
+      if(v === undefined){
+        return this._dom.value;
+      }
+      this._dom.value = v;
+      return this;
+    },
+    on: function(event, callback){
+      this._dom.addEventListener(event, callback, false);
+    },
+    html: function(html){
+      this._dom.innerHTML = html;
+      return this;
+    },
+    show: function(){
+      this._dom.style.display = 'block';
+      return this;
+    },
+    hide: function(){
+      this._dom.style.display = 'none';
+      return this;
     }
-    $scope.reset = function($event){
-      $event.stopPropagation();
-      $scope.api = {
-        method: '',
-        args: '{}',
-        result: 'TODO...',
-      };
-    };
-    $scope.invoke = function($event){
-      $event.stopPropagation();
-      var f = new $ae.Function($scope.api.method)
-
-      f.invoke(JSON.parse($scope.api.args))
-        .then(function(data){
-          $scope.api.result = JSON.stringify(data, null, 2);
-        })
-        .catch(function(err){
-          $scope.api.result = JSON.stringify(err, null, 2);
-        })
-    };
-    $scope.doCommand = function($event){
-      $event.stopPropagation();
-      var f = new $ae.Function('system.doCommand')
-
-      f.invoke({command: $scope.command.command})
-        .then(function(data){
-          $scope.command.result = data;
-        })
-        .catch(function(err){
-          $scope.command.result = err;
-        })
-    }
-  }])
-})(window.app);
-  
-(function(app){
-  app.controller('MysqlCtrl', ['$scope', '$ae', function($scope, $ae){
-    $scope.tables = [
-      {
-        name: 'A',
-        desc: 'fpm_user',
-      },
-      {
-        name: 'B',
-        desc: 'fpm_user',
-      },
-      {
-        name: 'C',
-        desc: 'fpm_user',
-      },
-      {
-        name: 'A',
-        desc: 'fpm_user',
-      },
-      {
-        name: 'B',
-        desc: 'fpm_user',
-      },
-      {
-        name: 'C',
-        desc: 'fpm_user',
-      },
-    ]
-  }]);
-})(window.app);
-
+  }
+  ctx.$ = miniJq;
+  return miniJq;
+})(window)
