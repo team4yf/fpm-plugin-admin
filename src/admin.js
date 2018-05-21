@@ -1,7 +1,17 @@
 import _ from 'lodash'
 import os from 'os'
+import path from 'path'
+import process from 'process'
 import dayjs from 'dayjs'
 import fpmc from 'yf-fpm-client-nodejs'
+
+const LOCAL = path.join(__dirname, '..')
+const CWD = process.cwd()
+const DEV_MODE = LOCAL == CWD
+let VIEW_ROOT_DIR = ''
+if(!DEV_MODE){
+    VIEW_ROOT_DIR = 'node_modules/fpm-plugin-admin/'
+}
 
 const SERVER_STATUS = {
     arch: os.arch(),
@@ -18,13 +28,15 @@ const SERVER_STATUS = {
 export default (admin) => {
     admin.get('/admin', async (ctx, next) => {
         await ctx.render('admin/login.html', {
-            version: ctx.fpm.getVersion()
+            version: ctx.fpm.getVersion(),
+            view_root_dir: VIEW_ROOT_DIR,
         })
     })
     
     admin.get('/admin/login', async (ctx, next) => {
         await ctx.render('admin/login.html', {
-            version: ctx.fpm.getVersion()
+            version: ctx.fpm.getVersion(),
+            view_root_dir: VIEW_ROOT_DIR,
         })
     })
     
@@ -32,6 +44,7 @@ export default (admin) => {
         const startTime = dayjs(ctx.fpm._start_time).format('YYYY-MM-DD HH:mm:ss')
         await ctx.render('admin/main.html', {
             version: ctx.fpm.getVersion(),
+            view_root_dir: VIEW_ROOT_DIR,
             online: '24H',
             status: _.assign(SERVER_STATUS, {
                 startTime,
@@ -45,6 +58,7 @@ export default (admin) => {
         await ctx.render('admin/test.html', {
             env: ctx.fpm._env,
             version: ctx.fpm.getVersion(),
+            view_root_dir: VIEW_ROOT_DIR,
             currentlink: ctx.currentlink,
         })
     })
@@ -53,6 +67,7 @@ export default (admin) => {
         await ctx.render('admin/config.html', {
             config: JSON.stringify(ctx.fpm.getConfig(), null, 2),
             version: ctx.fpm.getVersion(),
+            view_root_dir: VIEW_ROOT_DIR,
             currentlink: ctx.currentlink,
         })
     })
@@ -74,12 +89,14 @@ export default (admin) => {
     admin.get('/admin/about', async (ctx, next) => {
         await ctx.render('admin/about.html', {
             version: ctx.fpm.getVersion(),
+            view_root_dir: VIEW_ROOT_DIR,
             currentlink: ctx.currentlink,
         })
     })
     admin.get('/admin/plugin', async (ctx, next) => {
         await ctx.render('admin/plugin.html', {
             version: ctx.fpm.getVersion(),
+            view_root_dir: VIEW_ROOT_DIR,
             plugins: ctx.fpm.getPlugins(),
             currentlink: ctx.currentlink,
         })

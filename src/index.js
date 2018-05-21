@@ -7,7 +7,8 @@ import AdminRouter from './admin.js'
 
 import session from './session.js'
 
-const LOCAL = path.join(__dirname, '../')
+const LOCAL = path.join(__dirname, '..')
+
 export default {
   bind: (fpm) => {
     // Run When Server Init
