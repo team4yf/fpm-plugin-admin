@@ -1,6 +1,6 @@
 {
   "name": "fpm-plugin-admin",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A Fpm's Plugin For Admin Interface",
   "main": "lib/index.js",
   "scripts": {
