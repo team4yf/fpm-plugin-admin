@@ -13,7 +13,6 @@
   "license": "ISC",
   "dependencies": {
     "dayjs": "^1.6.2",
-    "fpm-plugin-logger": "^0.0.1",
     "koa-session2": "^2.2.6",
     "koa-static": "^4.0.2",
     "koa-views": "^6.1.4",
@@ -32,6 +31,6 @@
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
-    "yf-fpm-server": "^2.3.0"
+    "yf-fpm-server": "^2.4.0"
   }
 }
