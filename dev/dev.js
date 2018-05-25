@@ -17,3 +17,6 @@ app.addBizModules(biz);
 app.runAction('INIT', app)
 
 app.run()
+	.then(() => {
+		app.logger.error('ready to go~')
+	})
