@@ -1,3 +1,7 @@
+## 1.0.2
+- Add
+  - Show Plugins Detail
+
 ## 0.0.1
 
 TODO: 

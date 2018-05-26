@@ -15,16 +15,16 @@
       {% for _, plugin in plugins %}
       <tr>
         <td>
-          <p><strong>{{ plugin.name }}</strong></p>
+          <p><strong><a href="{{ plugin.npm }}" target="_blank">{{ plugin.name }}</a></strong></p>
         </td>
         <td>
           <p>{{ plugin.version }}</p>
         </td>
         <td>
-          <p class="align-right">{{ plugin.description if plugin.description else '暂无描述' }}</p>
+          <p class="align-right">{{ plugin.info.description if plugin.info.description else '暂无描述' }}</p>
         </td>
         <td class="align-right">
-          <button class="button-primary-outlined button-small">检查更新</button>
+          <button class="button-warning-outlined button-small check-update" version="{{ plugin.version }}" pname="{{ plugin.name }}">检查更新</button>
         </td>
       </tr>
       {% endfor %}
@@ -32,4 +32,29 @@
     </tbody>
   </table>
 </div>
+{% endblock %}
+
+{% block script %}
+<script>
+  $('.check-update').on('click', function(){
+    var THIS = $(this)
+    var pname = THIS.attr('pname');
+    var version = THIS.attr('version');
+    THIS.html('正在检查...');
+    $.post('/admin/registry', { name: pname})
+      .then(function(data){
+        var latest = data.data['latest'];
+        if(latest == version){
+          THIS.removeClass('button-warning-outlined').addClass('button-primary-outlined');
+          THIS.html('当前最新版');
+        }else{
+          THIS.removeClass('button-warning-outlined').addClass('button-danger-outlined');
+          THIS.html('有新版:' + latest);
+        }        
+      })
+      .catch(function(err){
+        console.error(err)
+      })
+  })
+</script>
 {% endblock %}

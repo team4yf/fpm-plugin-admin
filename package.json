@@ -1,6 +1,6 @@
 {
   "name": "fpm-plugin-admin",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A Fpm's Plugin For Admin Interface",
   "main": "lib/index.js",
   "scripts": {
@@ -12,6 +12,7 @@
   "author": "yfsoftcom",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "dayjs": "^1.6.2",
     "koa-session2": "^2.2.6",
     "koa-static": "^4.0.2",
@@ -31,6 +32,6 @@
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
-    "yf-fpm-server": "^2.4.0"
+    "yf-fpm-server": "^2.4.1"
   }
 }

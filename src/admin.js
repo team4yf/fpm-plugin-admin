@@ -4,6 +4,7 @@ import path from 'path'
 import process from 'process'
 import dayjs from 'dayjs'
 import fpmc from 'yf-fpm-client-nodejs'
+import axios from 'axios'
 
 const LOCAL = path.join(__dirname, '..')
 const CWD = process.cwd()
@@ -83,6 +84,17 @@ export default (admin) => {
         }
     })
 
+    admin.post('/admin/registry', async (ctx, next) => {
+        const { name } = ctx.request.body
+        try{
+            const data = await axios.get(`http://registry.npmjs.org/${name}`)
+            const latest = data.data['dist-tags'].latest
+            ctx.body = { errno: 0, data: { latest } }
+        }catch(e){
+            ctx.body = e
+        }
+    })
+
     admin.get('/admin/setting/:menu', async (ctx, next) => {
         await ctx.render('admin/setting/' + ctx.params.menu + '.html', {})
     })
@@ -94,6 +106,7 @@ export default (admin) => {
         })
     })
     admin.get('/admin/plugin', async (ctx, next) => {
+        // console.info(ctx.fpm.getPlugins())
         await ctx.render('admin/plugin.html', {
             version: ctx.fpm.getVersion(),
             view_root_dir: VIEW_ROOT_DIR,
