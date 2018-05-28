@@ -11,13 +11,6 @@ const LOCAL = path.join(__dirname, '..')
 
 export default {
   bind: (fpm) => {
-    // Run When Server Init
-    fpm.registerAction('INIT', () => {
-      fpm.logger.info(fpm.getVersion())
-      const c = fpm.getConfig()
-      fpm.logger.info('Run Init Actions: local path: ', LOCAL)
-    })
-
     fpm.registerAction('ADMIN', () => {
       let admin = fpm.createRouter()
       admin = AdminRouter(admin)

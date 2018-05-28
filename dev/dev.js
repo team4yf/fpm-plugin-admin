@@ -18,5 +18,5 @@ app.runAction('INIT', app)
 
 app.run()
 	.then(() => {
-		app.logger.error('ready to go~')
+		// app.logger.error('ready to go~')
 	})

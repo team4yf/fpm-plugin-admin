@@ -1,3 +1,7 @@
+## 1.0.3
+- Add
+  - `ctx.state` is the common variable object, it can be readed in view page
+
 ## 1.0.2
 - Add
   - Show Plugins Detail

@@ -27,53 +27,36 @@ const SERVER_STATUS = {
 }
 
 export default (admin) => {
-    admin.get('/admin', async (ctx, next) => {
-        await ctx.render('admin/login.html', {
-            version: ctx.fpm.getVersion(),
-            view_root_dir: VIEW_ROOT_DIR,
-        })
+    admin.get('/admin', async (ctx) => {
+        await ctx.render('admin/login.html')
     })
     
-    admin.get('/admin/login', async (ctx, next) => {
-        await ctx.render('admin/login.html', {
-            version: ctx.fpm.getVersion(),
-            view_root_dir: VIEW_ROOT_DIR,
-        })
+    admin.get('/admin/login', async (ctx) => {
+        await ctx.render('admin/login.html')
     })
     
-    admin.get('/admin/main', async (ctx, next) => {
+    admin.get('/admin/main', async (ctx) => {
         const startTime = dayjs(ctx.fpm._start_time).format('YYYY-MM-DD HH:mm:ss')
         await ctx.render('admin/main.html', {
-            version: ctx.fpm.getVersion(),
-            view_root_dir: VIEW_ROOT_DIR,
             online: '24H',
             status: _.assign(SERVER_STATUS, {
                 startTime,
                 counter: ctx.fpm._counter,
             }),
-            currentlink: ctx.currentlink,
         })
     })
 
-    admin.get('/admin/test', async (ctx, next) => {
-        await ctx.render('admin/test.html', {
-            env: ctx.fpm._env,
-            version: ctx.fpm.getVersion(),
-            view_root_dir: VIEW_ROOT_DIR,
-            currentlink: ctx.currentlink,
-        })
+    admin.get('/admin/test', async (ctx) => {
+        await ctx.render('admin/test.html')
     })
 
-    admin.get('/admin/config', async (ctx, next) => {
+    admin.get('/admin/config', async (ctx) => {
         await ctx.render('admin/config.html', {
             config: JSON.stringify(ctx.fpm.getConfig(), null, 2),
-            version: ctx.fpm.getVersion(),
-            view_root_dir: VIEW_ROOT_DIR,
-            currentlink: ctx.currentlink,
         })
     })
 
-    admin.post('/admin/rpc', async (ctx, next) => {
+    admin.post('/admin/rpc', async (ctx) => {
         // get body
         const { method, args } = ctx.request.body
         try{
@@ -84,7 +67,7 @@ export default (admin) => {
         }
     })
 
-    admin.post('/admin/registry', async (ctx, next) => {
+    admin.post('/admin/registry', async (ctx) => {
         const { name } = ctx.request.body
         try{
             const data = await axios.get(`http://registry.npmjs.org/${name}`)
@@ -95,31 +78,24 @@ export default (admin) => {
         }
     })
 
-    admin.get('/admin/setting/:menu', async (ctx, next) => {
+    admin.get('/admin/setting/:menu', async (ctx) => {
         await ctx.render('admin/setting/' + ctx.params.menu + '.html', {})
     })
-    admin.get('/admin/about', async (ctx, next) => {
-        await ctx.render('admin/about.html', {
-            version: ctx.fpm.getVersion(),
-            view_root_dir: VIEW_ROOT_DIR,
-            currentlink: ctx.currentlink,
-        })
+    admin.get('/admin/about', async (ctx) => {
+        await ctx.render('admin/about.html')
     })
-    admin.get('/admin/plugin', async (ctx, next) => {
+    admin.get('/admin/plugin', async (ctx) => {
         // console.info(ctx.fpm.getPlugins())
         await ctx.render('admin/plugin.html', {
-            version: ctx.fpm.getVersion(),
-            view_root_dir: VIEW_ROOT_DIR,
             plugins: ctx.fpm.getPlugins(),
-            currentlink: ctx.currentlink,
         })
     })
-    admin.get('/admin/logout', async (ctx, next) => {
+    admin.get('/admin/logout', async (ctx) => {
         ctx.session.admin = undefined
         await ctx.redirect('/admin/login')
     })
     
-    admin.post('/admin/login', async (ctx, next) => {
+    admin.post('/admin/login', async (ctx) => {
         //check pass
         let loginInfo = ctx.request.body
         const { user, pass, error} = _.assign({user: 'admin', pass: '741235896'}, ctx.fpm.getConfig('admin'))

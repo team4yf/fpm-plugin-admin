@@ -1,6 +1,6 @@
 {
   "name": "fpm-plugin-admin",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A Fpm's Plugin For Admin Interface",
   "main": "lib/index.js",
   "scripts": {
@@ -14,7 +14,6 @@
   "dependencies": {
     "axios": "^0.18.0",
     "dayjs": "^1.6.2",
-    "fpm-plugin-schedule": "^2.0.2",
     "koa-session2": "^2.2.6",
     "koa-static": "^4.0.2",
     "koa-views": "^6.1.4",
