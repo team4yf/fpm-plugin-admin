@@ -3,7 +3,7 @@ import os from 'os'
 import path from 'path'
 import process from 'process'
 import dayjs from 'dayjs'
-import fpmc from 'yf-fpm-client-nodejs'
+import fpmc from 'yf-fpm-client-js'
 import axios from 'axios'
 
 const LOCAL = path.join(__dirname, '..')
@@ -102,7 +102,7 @@ export default (admin) => {
         if (loginInfo.name === user && loginInfo.pass === pass) {
             // init fpmc
             const { port, domain } = ctx.fpm.getConfig('server')
-            fpmc.init({ appkey: '123123', masterkey: '123123', endpoint: `http://${ domain || 'localhost'}:${port}/api`})
+            fpmc.init({ appkey: '123123', masterkey: '123123', domain: `http://${ domain || 'localhost'}:${port}`})
             // fpmc.ping().then(console.info).catch(console.error)
             ctx.session.admin = loginInfo
             ctx.body = { code: 0 }
