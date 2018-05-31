@@ -1,3 +1,6 @@
+## 1.0.6
+- BugFix
+  - `fpmc.init({ ... master*K*ey: ...})` The `masterKey` the `K` should be upcase
 ## 1.0.3
 - Add
   - `ctx.state` is the common variable object, it can be readed in view page

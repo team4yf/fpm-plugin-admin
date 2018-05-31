@@ -3052,16 +3052,16 @@ yargs@^3.32.0:
     window-size "^0.1.4"
     y18n "^3.2.0"
 
-yf-fpm-client-js@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/yf-fpm-client-js/-/yf-fpm-client-js-1.0.1.tgz#4dd53064d24d3dd89db17abb6da9e0a20b1ebe7f"
+yf-fpm-client-js@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/yf-fpm-client-js/-/yf-fpm-client-js-1.0.2.tgz#199866c134ad5251c1cd571a1c9a9c8acb1c7476"
   dependencies:
     axios "^0.18.0"
     lodash "^4.17.4"
 
-yf-fpm-server@^2.4.7:
-  version "2.4.7"
-  resolved "https://registry.yarnpkg.com/yf-fpm-server/-/yf-fpm-server-2.4.7.tgz#661c584289fdae189f5d68f9c6bb37cefac5da62"
+yf-fpm-server@^2.4.9:
+  version "2.4.9"
+  resolved "https://registry.yarnpkg.com/yf-fpm-server/-/yf-fpm-server-2.4.9.tgz#a5f9e289251babed4147a9d542d99a0f2f148810"
   dependencies:
     koa "^2.5.1"
     koa-bodyparser "^4.2.1"

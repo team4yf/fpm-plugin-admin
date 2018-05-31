@@ -1,6 +1,6 @@
 {
   "name": "fpm-plugin-admin",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "A Fpm's Plugin For Admin Interface",
   "main": "lib/index.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "koa-views": "^6.1.4",
     "lodash": "^4.17.4",
     "nunjucks": "^3.1.2",
-    "yf-fpm-client-js": "^1.0.1"
+    "yf-fpm-client-js": "^1.0.2"
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",
@@ -32,6 +32,6 @@
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
-    "yf-fpm-server": "^2.4.7"
+    "yf-fpm-server": "^2.4.9"
   }
 }

@@ -101,8 +101,8 @@ export default (admin) => {
         const { user, pass, error} = _.assign({user: 'admin', pass: '741235896'}, ctx.fpm.getConfig('admin'))
         if (loginInfo.name === user && loginInfo.pass === pass) {
             // init fpmc
-            const { port, domain } = ctx.fpm.getConfig('server')
-            fpmc.init({ appkey: '123123', masterkey: '123123', domain: `http://${ domain || 'localhost'}:${port}`})
+            const { port, hostname } = ctx.fpm.getConfig('server')
+            fpmc.init({ appkey: '123123', masterKey: '123123', domain: `http://${ hostname || 'localhost'}:${port}`})
             // fpmc.ping().then(console.info).catch(console.error)
             ctx.session.admin = loginInfo
             ctx.body = { code: 0 }
