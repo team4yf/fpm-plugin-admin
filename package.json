@@ -32,6 +32,6 @@
     "chai": "^3.5.0",
     "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
-    "yf-fpm-server": "^2.4.9"
+    "yf-fpm-server": "^2.4.11"
   }
 }

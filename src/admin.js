@@ -1,18 +1,8 @@
 import _ from 'lodash'
 import os from 'os'
-import path from 'path'
-import process from 'process'
 import dayjs from 'dayjs'
 import fpmc from 'yf-fpm-client-js'
 import axios from 'axios'
-
-const LOCAL = path.join(__dirname, '..')
-const CWD = process.cwd()
-const DEV_MODE = LOCAL == CWD
-let VIEW_ROOT_DIR = ''
-if(!DEV_MODE){
-    VIEW_ROOT_DIR = 'node_modules/fpm-plugin-admin/'
-}
 
 const SERVER_STATUS = {
     arch: os.arch(),

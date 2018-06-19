@@ -3059,9 +3059,9 @@ yf-fpm-client-js@^1.0.2:
     axios "^0.18.0"
     lodash "^4.17.4"
 
-yf-fpm-server@^2.4.9:
-  version "2.4.9"
-  resolved "https://registry.yarnpkg.com/yf-fpm-server/-/yf-fpm-server-2.4.9.tgz#a5f9e289251babed4147a9d542d99a0f2f148810"
+yf-fpm-server@^2.4.11:
+  version "2.4.11"
+  resolved "https://registry.yarnpkg.com/yf-fpm-server/-/yf-fpm-server-2.4.11.tgz#bb66381198f8dcf41d7b8bd4e606bf417cddfe2d"
   dependencies:
     koa "^2.5.1"
     koa-bodyparser "^4.2.1"
